@@ -1,0 +1,4 @@
+{
+    "apiEndPoint": "http://"+IP+port+"",
+    "authEndPoint": "http://"+IP+port+"/oauth/token"
+}
