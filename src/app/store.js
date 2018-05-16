@@ -1,9 +1,9 @@
 import {createStore, combineReducers, 
     applyMiddleware} from 'redux';
+
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
     
-import stateReducer from './states/state/StateReducer';
-import stateViewReducer from './states/state/StateViewReducer';
-import stateEditReducer from './states/state/StateEditReducer';
 import authReducer from './auth/state/AuthReducer';
 import EmployeeReducer from './employee/state/EmployeeReducer';
 import EmployeeDetailsReducer from './employee/state/EmployeeDetailsReducer';
@@ -11,6 +11,11 @@ import ProjectReducer from './project/state/ProjectReducer';
 import ProjectDetailsReducer from './project/state/ProjectDetailsReducer';
 
 import thunk from 'redux-thunk';
+
+const persistConfig = {
+    key: 'root',
+    storage,
+  }
 
 // function called by store
 //for every dispatch
@@ -28,9 +33,6 @@ import thunk from 'redux-thunk';
 
 const rootReducers = combineReducers({
 //state name: reducer function
-statesList: stateReducer,
-stateViewStore: stateViewReducer,
-editedState:stateEditReducer,
 authState: authReducer,
 employeeListStore:EmployeeReducer,
 employeeDetailsStore:EmployeeDetailsReducer,
@@ -48,12 +50,16 @@ function getInitialAuthState() {
     }
 }
 
-let store = createStore(rootReducers, 
-    {
-        authState: getInitialAuthState()
-    },
-        applyMiddleware(thunk));
+const persistedReducer = persistReducer(persistConfig, rootReducers)
+
+let store = createStore(persistedReducer , 
+        {
+            authState: getInitialAuthState()
+        },
+            applyMiddleware(thunk));
+let persistor = persistStore(store)
+export default { store, persistor }
+
+
 //store.getState() ==> { counter : 0, cartItems: []}
 //stoer.getState() object type
-
-export default store;

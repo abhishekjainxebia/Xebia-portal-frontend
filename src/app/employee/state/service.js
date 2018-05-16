@@ -1,66 +1,114 @@
-import "whatwg-fetch";
+import * as Http from "../../http-call";
+
+export function getEmployeesList() {
+    let apiEndpoint = '/employeelist/'
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-credentials': true,
+        'content-type': 'application/json'
+    }
+    return Http.getMethod(apiEndpoint, null, headers
+    )
+        .then(response => {
+            return response
+        })
+}
+
+export function getEmployeeById(id) {
+    let apiEndpoint = '/employee/' + id
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-credentials': true,
+        'content-type': 'application/json'
+    }
+
+    return Http.getMethod(apiEndpoint, null, headers
+    )
+        .then(response => {
+            return response
+        })
+}
 
 
-let IP="192.168.1.209"
-let port=":9090"
+export function updateEmployee(editedEmployeeDetails) {
+    let apiEndpoint = '/employee/' + editedEmployeeDetails.emp_id
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json'
+    }
 
-export function getEmployeesList(){
-    return fetch("http://"+IP+port+"/employeelist/",{
-        method: 'GET',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'access-control-allow-credentials':true,
-            'content-type':'application/json'
-          },
-        credentials:'include'
-    })
-    .then( response =>{
-        return response.json();
+    return Http.putMethod(apiEndpoint, editedEmployeeDetails, headers
+    ).then(response => {
+        return response
     })
 }
 
-export function getEmployeeById(id){
-    return fetch("http://"+IP+port+"/employee/"+id,{
-        method: 'GET',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'access-control-allow-credentials':true,
-            'content-type':'application/json'
-          },
-        credentials: 'include'
-    })
-    .then( response =>{
-        return response.json();
+export function saveEmployee(editedEmployeeDetails) {
+    let apiEndpoint = '/create/employee/'
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json'
+    }
+
+    return Http.postMethod(apiEndpoint, editedEmployeeDetails, headers
+    ).then(response => {
+        return response
     })
 }
 
-export function updateEmployee(editedEmployeeDetails){
-    return fetch("http://"+IP+port+"/employee/"+editedEmployeeDetails.emp_id, {
-        method: 'PUT',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          },
-        credentials: 'include',
-        body: JSON.stringify(editedEmployeeDetails)
-    })
-    .then( reponse =>{
-        return reponse.json();
-    })
+export function getEmployeeProjects(id) {
+    let apiEndpoint = '/empprojmap/' + id
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-credentials': true,
+        'content-type': 'application/json'
+    }
+
+    return Http.getMethod(apiEndpoint, null, headers
+    )
+        .then(response => {
+            return response
+        })
 }
 
-export function saveEmployee(editedEmployeeDetails){
-    return fetch("http://"+IP+port+"/create/employee/", {
-        method: 'POST',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          },
-        credentials: 'include',
-        body: JSON.stringify(editedEmployeeDetails)
-    })
-    .then( reponse =>{
-        return reponse.json();
-    })
+export function getEmployeePermenentAddress(id) {
+    let apiEndpoint = '/address/' + id + '/permanent'
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-credentials': true,
+        'content-type': 'application/json'
+    }
+    return Http.getMethod(apiEndpoint, null, headers
+    )
+        .then(response => {
+            return response
+        })
 }
 
+export function getEmployeeCurrentAddress(id) {
+    let apiEndpoint = '/address/' + id + '/current'
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-credentials': true,
+        'content-type': 'application/json'
+    }
+    return Http.getMethod(apiEndpoint, null, headers
+    )
+        .then(response => {
+            return response
+        })
+}
+
+export function updateEmployeeAddress(emp_id,updatedAddressDetails) {
+    let apiEndpoint = '/address/' + emp_id+'/'+ updatedAddressDetails.address_type //:id/:type
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json'
+    }
+
+    return Http.putMethod(apiEndpoint, updatedAddressDetails, headers
+    ).then(response => {
+        console.log(response)
+        return response
+    })
+}

@@ -26,29 +26,27 @@ export default class Login extends Component {
     }
 
     login=(e,history)=>{
-        console.log("login");
-        e.preventDefault();
-        const {username, password}=this.state.loginCredentials;
-        let user = {username, password};
-        authApi.login(user)
-        .then((data) => {
+
+        const loginResult=(data)=>{
             if(data.code == 1000){
                 //const header = data.headers.entries()
                 //console.log(header);
                 this.props.loginSuccess();
                 storage.setItem("authToken",data.authToken)
                 cookie.save('authToken', data.authToken, { path: '/' })
-
+        
                 alert("Login success");
                 this.props.history.push("/");
             }
-        },
-        (error) =>{
-            alert("failed");
+            else{
+               alert("Login failed");     
+            }
         }
-        );  
-        
-        //
+        console.log("login");
+        e.preventDefault();
+        const {username, password}=this.state.loginCredentials;
+        let user = {username, password};
+        authApi.login(user,loginResult)
     }
     
     render() {

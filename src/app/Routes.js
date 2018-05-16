@@ -14,11 +14,7 @@ import {App}
         from "./App";
 
 
-import Home from "./components/Home";
-import Statelist from "./states/containers/Statelist";
-import StateView from "./states/containers/Stateview";
-import StateEdit from "./states/containers/StateEdit";
-import Statecreate from "./states/containers/Statecreate";
+import Home from "./home/containers/Home";
 import Login from "./auth/containers/Login";
 import AuthRoute from "./auth/components/AuthRoute";
 import Employee from "./employee/containers/Employee";
@@ -39,10 +35,6 @@ export default function Routes(props) {
                     <AuthRoute path='/home/project' component={Project} />
                     {/* <Route path="/about" exact  component={About} /> */}
                     <Route path="/login" history={history} exact  component={Login} />
-                    <Route path="/statelist" exact  component={Statelist} />
-                    <Route path="/statelist/view/:id" exact  component={StateView} />
-                    <Route path="/statelist/edit/:id" exact  component={StateEdit} />
-                    <Route path="/statelist/create" exact component={Statecreate}/>
                 </Switch>
             </App>
         </Router>

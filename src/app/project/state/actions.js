@@ -52,27 +52,27 @@ export function initError(error) {
 export function fetchProjects(){
     return function(dispatch,getState){
 
-        dispatch(loading(true));
+       // dispatch(loading(true));
         console.log("called by thunk");
         service.getProjectsList()
         .then( projectList =>{
             let action = initProjects(projectList);
             //action object
             dispatch(action);
-            dispatch(loading(false));
+            //dispatch(loading(false));
         });
     }
 }
 
 export function fetchProjectDetails(id){
     return function(dispatch,getState){
-        dispatch(loading(true));
+        //dispatch(loading(true));
         service.getProjectById(id)
         .then( projectDetails =>{
             let action = initProjectDetails(projectDetails);
             //action object
             dispatch(action);
-            dispatch(loading(false));
+            //dispatch(loading(false));
         });
     }
 }
@@ -86,30 +86,27 @@ export function updateProject(editedProjectDetails){
     }
 }
 
-export function saveUpdatedProject(ProjectDetailsToSave){
+export function saveUpdatedProject(ProjectDetailsToSave,callbackResult){
     return function(dispatch,getState){
-        dispatch(loading(true));
+        //dispatch(loading(true));
         console.log("called by thunk");
         service.updateProject(ProjectDetailsToSave)
-        .then(updatedProjectDetails =>{
+        .then(data =>{
+            callbackResult(data)
             console.log(updatedProjectDetails)
-            // let action = initEditedProjects(ProjectDetailsToSave);
-            // //action object
-            // dispatch(action);
-            dispatch(loading(false));
         });
     }
 }
 
 export function saveNewProject(ProjectDetailsToSave,callbackResult){
     return function(dispatch,getState){
-        dispatch(loading(true));
+        //dispatch(loading(true));
         console.log("called by thunk");
         service.saveProject(ProjectDetailsToSave)
         .then(updatedProjectDetails =>{
             callbackResult(updatedProjectDetails)
             console.log(updatedProjectDetails)
-            dispatch(loading(false));
+            //dispatch(loading(false));
         });
     }
 }

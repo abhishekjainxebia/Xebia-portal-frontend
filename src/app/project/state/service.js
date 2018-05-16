@@ -10,7 +10,7 @@ export function getProjectsList(){
     return Http.getMethod(apiEndpoint,null,headers
     )
     .then( response =>{
-        return response.json();
+        return response
     })
 }
 
@@ -25,42 +25,32 @@ export function getProjectById(id){
     return Http.getMethod(apiEndpoint,null,headers
     )
     .then( response =>{
-        return response.json();
+        return response
     })
 }
 
 export function updateProject(editedProjectDetails){
-    let apiEndpoint='/Project/'+id
+    let apiEndpoint='/Project/'+editedProjectDetails.id
     let headers= {
         'Access-Control-Allow-Origin': '*',
         'content-type':'application/json'
       }
 
-    return fetch("http://"+IP+port+"/Project/"+editedProjectDetails.id, {
-        method: 'PUT',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          },
-        credentials: 'include',
-        body: JSON.stringify(editedProjectDetails)
-    })
-    .then( reponse =>{
-        return reponse.json();
+    return Http.putMethod(apiEndpoint,editedProjectDetails,headers
+    ).then( response =>{
+        return response
     })
 }
 
 export function saveProject(editedProjectDetails){
-    return fetch("http://"+IP+port+"/create/Project/", {
-        method: 'POST',
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          },
-        credentials: 'include',
-        body: JSON.stringify(editedProjectDetails)
-    })
-    .then( reponse =>{
-        return reponse.json();
+    let apiEndpoint='/create/Project/'
+    let headers= {
+        'Access-Control-Allow-Origin': '*',
+        'content-type':'application/json'
+      }
+
+    return Http.postMethod(apiEndpoint,editedProjectDetails,headers
+    ).then( response =>{
+        return response
     })
 }

@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch) => {
         let actionFn=actions.updateProject(editedProjectDetails);
         dispatch(actionFn)
       },
-      saveUpdatedProject: function(ProjectDetailsToSave) {
-        let actionFn=actions.saveUpdatedProject(ProjectDetailsToSave);
+      saveUpdatedProject: function(ProjectDetailsToSave,callbackResult) {
+        let actionFn=actions.saveUpdatedProject(ProjectDetailsToSave,callbackResult);
         dispatch(actionFn)
       },
       saveNewProject: function(ProjectDetailsToSave,callbackResult) {

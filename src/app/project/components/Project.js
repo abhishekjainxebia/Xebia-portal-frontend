@@ -54,13 +54,6 @@ export default class Project extends Component {
             if(this.props.projectList[i].name.toLowerCase().includes(e.target.value)){
                 x.push(this.props.projectList[i]);
             }
-
-            // if(this.props.projectList[i].manager.toLowerCase().includes(e.target.value)){
-            //     x.push(this.props.projectList[i]);
-            // }
-            // if(this.props.employeeList[i].name.includes("a")){
-            //     x.push(this.props.employeeList[i]);
-            // }
         }
         if (e.target.value != "") {
             this.setState({
@@ -84,22 +77,33 @@ export default class Project extends Component {
             if (saveEmpApiResult.code != 1008) {
                 alert(saveEmpApiResult.description)
             } else {
-                lert('successfully saved')
+                alert('Project successfully saved')
                 this.setState({
                     disabled: true,
                     create: false
                 })
+                this.props.fetchProjects();
             }
         }
         this.props.saveNewProject(this.props.projectDetails, callbackResult);
+        
     }
 
     saveUpdatedProject(){
-        this.props.saveUpdatedProject(this.props.projectDetails);
-        alert("Project updated successfully")
-        this.setState({
-            disabled:true
-        })
+
+        const callbackResult = (data) => {
+            if (data.code != 1008) {
+                alert(data.description)
+            } else {
+                alert("Project updated successfully")
+                this.setState({
+                    disabled: true,
+                    create: false
+                })
+                this.props.fetchProjects();
+            }
+        }
+        this.props.saveUpdatedProject(this.props.projectDetails,callbackResult);
     }
 
     changeValue = (e) => {
@@ -133,7 +137,6 @@ export default class Project extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchProjects();
     }
 
     render() {

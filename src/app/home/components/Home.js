@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import {NavLink} from 'react-router-dom';
 
 export default class Home extends Component {
+
+    componentDidMount(){
+        this.props.fetchEmployees();
+        this.props.fetchProjects();
+    }
     render() {
         return (
             <div>
