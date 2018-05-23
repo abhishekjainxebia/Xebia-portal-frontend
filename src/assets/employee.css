@@ -121,8 +121,14 @@ margin: auto;
     height: 100vh;  
 }
 
+.homeIcon{
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
 #homeIconNav{
-    padding:0px 0px;
+    padding: 6px 0px;
 }
 
 .work-section{
@@ -202,6 +208,15 @@ hr{
     background-color:  #f7eff7;
     border:1px solid #6c1e5f;
 }
+
+.btn-xebia-2{
+    color:#6c1e5f;
+    background-color:  #f7eff7;
+    border:1px solid #6c1e5f;
+    border-radius: 0px;
+    margin-top: 11px;
+}
+
 label{
     background-color: #f7eff7;
     text-align: center;

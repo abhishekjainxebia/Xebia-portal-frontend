@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 }
 
 export default function EmployeeReducer(state = INITIAL_STATE, action) {
-    console.log("stateReducer ", state, action);
     switch (action.type) {
         case ActionTypes.INIT_EMPLOYEELIST:
             return Object.assign({}, state, { employeeList: action.payload.employeeList });

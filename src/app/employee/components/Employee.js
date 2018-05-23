@@ -1,5 +1,6 @@
 import React, { Component, PureComponent } from "react";
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector'
+import Navbar from '../../components/Navbar'
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import moment from 'moment'
@@ -21,7 +22,9 @@ export default class Employee extends PureComponent {
             searchResult: [],
             employeeProjects: true,
             address: true,
-            samePermAndCurAddress: false
+            samePermAndCurAddress: false,
+            skill:true,
+            empProjectHidden:true
         }
     }
 
@@ -123,6 +126,7 @@ export default class Employee extends PureComponent {
         }
         this.getEmployeeDetailsFromList(id)
         this.props.getEmployeeProjects(id, callback);
+        this.props.getProjectList();
     }
 
     saveNewEmployee() {
@@ -251,7 +255,9 @@ export default class Employee extends PureComponent {
         this.setState({
             detail: false,
             disabled: false,
-            create: true
+            create: true,
+            employeeProjects:true
+            
         })
         let employeeDetails = {
             createdAt: '',
@@ -313,28 +319,22 @@ export default class Employee extends PureComponent {
 
         return (
             <div>
-                <div id="nav-section" class="row">
-                    <div class="col-3" id="homeIconNav">
-                    <NavLink to="/" className="homeIcon" exact  >
-                        <h2> Xebia IT Architects</h2>
-                    </NavLink>
-                    </div>
-                </div>
-                <section id="workboard-section" class="row">
-                    <div id="sidebar-section" class="col-sm-2">
-                        <div class="create-new-employee">
-                            <i class="fa fa-arrow-circle-up"></i>
-                            <button onClick={() => { this.showEmployeeForm() }} class="pull-right btn btn-xebia">
-                                Create Employee <i class="fa fa-edit"></i>
+                <Navbar/>
+                <section id="workboard-section" className="row">
+                    <div id="sidebar-section" className="col-sm-2">
+                        <div className="create-new-employee">
+                            <i className="fa fa-arrow-circle-up"></i>
+                            <button onClick={() => { this.showEmployeeForm() }} className="pull-right btn btn-xebia">
+                                Create Employee <i className="fa fa-edit"></i>
                             </button>
                         </div>
                         <div>Search</div>
-                        <div class="search-section">
-                            <div class="input-group mb-3">
-                                <input type="text" name="searchbar" class="form-control" onChange={(e) => this.searchInList(e)} placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">
-                                        <i class="fa fa-search"></i>
+                        <div className="search-section">
+                            <div className="input-group mb-3">
+                                <input type="text" name="searchbar" className="form-control" onChange={(e) => this.searchInList(e)} placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                <div className="input-group-append">
+                                    <span className="input-group-text" id="basic-addon2">
+                                        <i className="fa fa-search"></i>
                                     </span>
                                 </div>
                             </div>
@@ -343,17 +343,17 @@ export default class Employee extends PureComponent {
                         <div className="result-section" className={this.state.resultSection ? 'hidden' : ''}>
                             {
                                 employeeList.map(employee => (
-                                    <div class="employee">
-                                        <div class="rs-disp-line">
+                                    <div className="employee">
+                                        <div className="rs-disp-line">
                                             <span>Emp ID </span>:
                                                 <span>
-                                                <a class="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.emp_id}</a>
+                                                <a className="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.emp_id}</a>
                                             </span>
                                         </div>
-                                        <div class="rs-disp-line">
+                                        <div className="rs-disp-line">
                                             <span>Name </span>:
                                             <span>
-                                                <a class="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.name}</a>
+                                                <a className="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.name}</a>
                                                 {/* <NavLink to={{ pathname: '/home/project', state: { proj_id: '1'} }} className="roundedbutton" exact activeClassName="success" >
                                                 Employee
                                             </NavLink> */}
@@ -362,7 +362,7 @@ export default class Employee extends PureComponent {
                                                 {/* <a href="" data-src="project" data-opt="1">Mckinsey DOF</a>  */}
                                             </span>
                                         </div>
-                                        <div class="criteria-section">
+                                        <div className="criteria-section">
                                             <a href="#" onClick={() => { this.getEmployeeDetails(employee.emp_id) }} >Details</a> |
                                                 <a href="#" onClick={() => { this.getEmployeeAddress(employee.emp_id) }} >Address</a> |
                                                 <a href="#" onClick={() => { this.getEmployeeProjects(employee.emp_id) }} >Project</a> |
@@ -378,17 +378,17 @@ export default class Employee extends PureComponent {
 
                             {
                                 this.state.searchResult.map(employee => (
-                                    <div class="employee">
-                                        <div class="rs-disp-line">
+                                    <div className="employee">
+                                        <div className="rs-disp-line">
                                             <span>Emp ID </span>:
                                                 <span>
-                                                <a class="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.emp_id}</a>
+                                                <a className="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.emp_id}</a>
                                             </span>
                                         </div>
-                                        <div class="rs-disp-line">
+                                        <div className="rs-disp-line">
                                             <span>Name </span>:
                                             <span>
-                                                <a class="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.name}</a>
+                                                <a className="btnLinks" onClick={() => { this.getEmployeeDetails(employee.emp_id) }}>{employee.name}</a>
                                                 {/* <NavLink to={{ pathname: '/home/project', state: { proj_id: '1'} }} className="roundedbutton" exact activeClassName="success" >
                                                 Employee
                                             </NavLink> */}
@@ -397,7 +397,7 @@ export default class Employee extends PureComponent {
                                                 {/* <a href="" data-src="project" data-opt="1">Mckinsey DOF</a>  */}
                                             </span>
                                         </div>
-                                        <div class="criteria-section">
+                                        <div className="criteria-section">
                                             <a href="" onClick={() => { this.getEmployeeDetails(employee.emp_id) }} >Details</a> |
                                                 <a href="#" onClick={() => { this.getEmployeeAddress(employee.emp_id) }} >Address</a> |
                                                 <a href="" onClick={() => { this.getEmployeeProjects(employee.emp_id) }} >Project</a> |
@@ -413,32 +413,32 @@ export default class Employee extends PureComponent {
                     </div>
                     <div className='col-sm-9 work-section'>
                         <div id="view-section" className={this.state.detail ? 'hidden' : ''}>
-                            <div class="component-view container">
-                                <div class="component-head">
+                            <div className="component-view container">
+                                <div className="component-head">
                                     <h2>Details
-                                        <button onClick={() => { this.editEmployee() }} detail={this.state.create ? true : false} class="pull-right btn btn-xebia">
-                                            EDIT <i class="fa fa-edit"></i>
+                                        <button onClick={() => { this.editEmployee() }} detail={this.state.create ? true : false} className="pull-right btn btn-xebia">
+                                            EDIT <i className="fa fa-edit"></i>
                                         </button>
                                     </h2>
                                 </div>
                                 <hr />
-                                <div class="component-body row">
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="emp_id" class="col-sm-4">Emp ID:</label>
-                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} class="form-control col-sm-6" id="emp_id" value={employee.emp_id} placeholder="Enter Emp ID" name="emp_id" />
+                                <div className="component-body row">
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="emp_id" className="col-sm-4">Emp ID:</label>
+                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} className="form-control col-sm-6" id="emp_id" value={employee.emp_id} placeholder="Enter Emp ID" name="emp_id" />
                                         </div>
                                     </div>
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="name" class="col-sm-4">Name:</label>
-                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} class="form-control col-sm-6" id="name" value={employee.name} placeholder="Enter name" name="name" />
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="name" className="col-sm-4">Name:</label>
+                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} className="form-control col-sm-6" id="name" value={employee.name} placeholder="Enter name" name="name" />
                                         </div>
                                     </div>
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="title" class="col-sm-4">Title:</label>
-                                            <select class="form-control col-sm-6" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.title} name="title">
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="title" className="col-sm-4">Title:</label>
+                                            <select className="form-control col-sm-6" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.title} name="title">
                                                 <option value="" selected>Select Title</option>
                                                 <option value="Consultant">Consultant</option>
                                                 <option value="Senior Consultant">Senior Consultant</option>
@@ -446,10 +446,10 @@ export default class Employee extends PureComponent {
                                         </div>
                                     </div>
 
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="status" class="col-sm-4">Status:</label>
-                                            <select class="form-control col-sm-6" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.status} id="status" name="status">
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="status" className="col-sm-4">Status:</label>
+                                            <select className="form-control col-sm-6" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.status} id="status" name="status">
                                                 <option value="" selected>Select Status</option>
                                                 <option value="deployable">Deployable</option>
                                                 <option value="soft_blocked">Soft Blocked</option>
@@ -457,77 +457,99 @@ export default class Employee extends PureComponent {
                                         </div>
                                     </div>
 
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="doj" class="col-sm-4">Date of Joining:</label>
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="doj" className="col-sm-4">Date of Joining:</label>
                                             <input
                                                 onChange={(e) => this.changeValue(e)}
                                                 type="date"
                                                 disabled={this.state.disableEmpDetails}
                                                 value={moment(employee.doj).format('YYYY-MM-DD')}
-                                                class="form-control col-sm-6" id="doj"
+                                                className="form-control col-sm-6" id="doj"
                                                 name="doj" />
                                         </div>
                                     </div>
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-4">Email:</label>
-                                            <input type="email" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.email} class="form-control col-sm-6" id="email" placeholder="Enter Email" name="email" />
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="email" className="col-sm-4">Email:</label>
+                                            <input type="email" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.email} className="form-control col-sm-6" id="email" placeholder="Enter Email" name="email" />
                                         </div>
                                     </div>
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="phone" class="col-sm-4">Phone:</label>
-                                            <input type="phone" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.phone} class="form-control col-sm-6" id="phone" placeholder="Enter Phone" name="phone" />
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="phone" className="col-sm-4">Phone:</label>
+                                            <input type="phone" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.phone} className="form-control col-sm-6" id="phone" placeholder="Enter Phone" name="phone" />
                                         </div>
                                     </div>
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="emp_type" class="col-sm-4">Emp Type:</label>
-                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.emp_type} class="form-control col-sm-6" id="emp_type" placeholder="Enter Emp Type" name="emp_type" />
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="emp_type" className="col-sm-4">Emp Type:</label>
+                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.disableEmpDetails} value={employee.emp_type} className="form-control col-sm-6" id="emp_type" placeholder="Enter Emp Type" name="emp_type" />
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="component-footer">
-                                <button class="pull-right btn btn-xebia" onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedEmployee()} >
-                                    <i class="fa fa-save"></i> Save
+                            <div className="component-footer">
+                                <button className="pull-right btn btn-xebia" onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedEmployee()} >
+                                    <i className="fa fa-save"></i> Save
                             </button>
-                                <span class="pull-right btn btn-xebia" onClick={() => this.onCancel()} >
-                                    <i class="fa fa-cut"></i> Cancel
+                                <span className="pull-right btn btn-xebia" onClick={() => this.onCancel()} >
+                                    <i className="fa fa-cut"></i> Cancel
                             </span>
-                                {/* <span class="pull-right btn btn-xebia">
-                                <i class="fa fa-ban"></i> Clear
+                                {/* <span className="pull-right btn btn-xebia">
+                                <i className="fa fa-ban"></i> Clear
                             </span> */}
                             </div>
                         </div>
                         <div id="employee-project-section" className={this.state.employeeProjects ? 'hidden' : ''}>
-                            <div class="component-view container">
-                                <div class="component-head">
+                            <div className="component-view container">
+                                <div className="component-head">
                                     <h2>Project details of {employee.name}
-                                        <i class="fa fa-arrow-circle-up"></i>
-                                        {/* <button onClick={()=>{this.editEmployee()}} detail={this.state.create?true:false} class="pull-right btn btn-xebia">
-                                            EDIT <i class="fa fa-edit"></i> 
+                                        <i className="fa fa-arrow-circle-up"></i>
+                                        {/* <button onClick={()=>{this.editEmployee()}} detail={this.state.create?true:false} className="pull-right btn btn-xebia">
+                                            EDIT <i className="fa fa-edit"></i> 
                                         </button> */}
                                     </h2>
                                     <hr />
                                 </div>
-                                <div class="component-body row">
+                                <div className="component-body row">
                                     {/* {   
                                     this.state.searchResult.map(employee => ( */}
-                                    <div class="component-body col-sm-12">
-                                        <div class="form-group row">
-                                            <label for="proj_name" class="col-sm-2">Proj ID:</label>
-                                            <input type="text" onChange={(e) => this.changeValue(e)} class="form-control col-sm-2" id="allocation" value={employeeProjectList.project_id} placeholder="Enter Allocation" name="allocation" />
+                                    <div className="component-body col-sm-12">
+                                        {/* <div className="form-group row">
+                                            <label for="proj_name" className="col-sm-2">Proj ID:</label>
+                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.empProjectHidden} className="form-control col-sm-2" id="allocation" value={employeeProjectList.project_id} placeholder="Enter Allocation" name="allocation" />
+                                            <div className="col-sm-7">
+                                                <button className="float-right btn btn-xebia" onClick={()=>this.logout()}>
+                                                    Save
+                                                </button>
+                                                <button className="float-right btn btn-xebia" onClick={()=>this.setState({empProjectHidden:false})}>
+                                                    Edit
+                                                </button>
+                                            </div>
+                                        </div> */}
+                                        <div className="form-group row">
+                                            <label for="proj_name" className="col-sm-2">Project Name:</label>
+                                            
+                                            <select onChange={(e) => this.changeValue(e)} disabled={this.state.empProjectHidden} className="form-control col-sm-2" id="allocation" value={employeeProjectList.project_name} placeholder="Enter Allocation" name="allocation">
+                                                <option value="volvo">Volvo</option>
+                                                <option value="saab">Saab</option>
+                                                <option value="mercedes">Mercedes</option>
+                                                <option value="audi">Audi</option>
+                                            </select>
+                                            <div className="col-sm-7">
+                                                <button className="float-right btn btn-xebia" onClick={()=>this.logout()}>
+                                                    Save
+                                                </button>
+                                                <button className="float-right btn btn-xebia" onClick={()=>this.setState({empProjectHidden:false})}>
+                                                    Edit
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="proj_name" class="col-sm-2">Project Name:</label>
-                                            <input type="text" onChange={(e) => this.changeValue(e)} class="form-control col-sm-2" id="allocation" value={employeeProjectList.project_name} placeholder="Enter Allocation" name="allocation" />
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="proj_name" class="col-sm-2">Allocation:</label>
-                                            <input type="text" onChange={(e) => this.changeValue(e)} class="form-control col-sm-2" id="allocation" value={employeeProjectList.allocation} placeholder="Enter Allocation" name="allocation" />
+                                        <div className="form-group row">
+                                            <label for="proj_name" className="col-sm-2">Allocation:</label>
+                                            <input type="text" onChange={(e) => this.changeValue(e)} disabled={this.state.empProjectHidden} className="form-control col-sm-2" id="allocation" value={employeeProjectList.allocation} placeholder="Enter Allocation" name="allocation" />
                                         </div>
                                     </div>
                                 </div>
@@ -535,34 +557,34 @@ export default class Employee extends PureComponent {
                             </div>
                         </div>
                         <div id="employee-address-section" className={this.state.address ? 'hidden' : ''}>
-                            <div class="component-view container permanent-address">
-                                <div class="component-head">
+                            <div className="component-view container permanent-address">
+                                <div className="component-head">
                                     <h2>Permanent Address
                                     {/* <button type="button" id="toggle-perm-address">Simple collapsible</button> */}
-                                        <i class="fa fa-arrow-circle-up"></i>
-                                        <button onClick={() => this.setState({ disablePerAdd: false })} detail={this.state.create ? true : false} class="pull-right btn btn-xebia">
-                                            EDIT <i class="fa fa-edit"></i>
+                                        <i className="fa fa-arrow-circle-up"></i>
+                                        <button onClick={() => this.setState({ disablePerAdd: false })} detail={this.state.create ? true : false} className="pull-right btn btn-xebia">
+                                            EDIT <i className="fa fa-edit"></i>
                                         </button>
                                     </h2>
                                     <hr />
                                 </div>
-                                <div class="component-body row" id="permanent-address">
-                                    <div class="component-body col-sm-12">
-                                        <div class="form-group row">
-                                            <label for="add_line_1" class="col-sm-2">Address Line 1:</label>
-                                            <input type="text" onChange={(e) => this.changeValuePermanentAddress(e)} disabled={this.state.disablePerAdd} class="form-control col-sm-8" id="add_line1" value={employeePermanentAddress.add_line1} placeholder="Enter Address Line 1" name="add_line1" />
+                                <div className="component-body row" id="permanent-address">
+                                    <div className="component-body col-sm-12">
+                                        <div className="form-group row">
+                                            <label for="add_line_1" className="col-sm-2">Address Line 1:</label>
+                                            <input type="text" onChange={(e) => this.changeValuePermanentAddress(e)} disabled={this.state.disablePerAdd} className="form-control col-sm-8" id="add_line1" value={employeePermanentAddress.add_line1} placeholder="Enter Address Line 1" name="add_line1" />
                                         </div>
                                     </div>
-                                    <div class="component-body col-sm-12">
-                                        <div class="form-group row">
-                                            <label for="add_line_2" class="col-sm-2">Address Line 2:</label>
-                                            <input type="text" onChange={(e) => this.changeValuePermanentAddress(e)} disabled={this.state.disablePerAdd} class="form-control col-sm-8" id="add_line2" value={employeePermanentAddress.add_line2} placeholder="Enter Address Line 2" name="add_line2" />
+                                    <div className="component-body col-sm-12">
+                                        <div className="form-group row">
+                                            <label for="add_line_2" className="col-sm-2">Address Line 2:</label>
+                                            <input type="text" onChange={(e) => this.changeValuePermanentAddress(e)} disabled={this.state.disablePerAdd} className="form-control col-sm-8" id="add_line2" value={employeePermanentAddress.add_line2} placeholder="Enter Address Line 2" name="add_line2" />
                                         </div>
                                     </div>
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="country" class="col-sm-4">Country:</label>
-                                            <div class="form-control col-sm-6">
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="country" className="col-sm-4">Country:</label>
+                                            <div className="form-control col-sm-6">
                                                 <CountryDropdown
                                                     id="country"
                                                     value={employeePermanentAddress.country}
@@ -572,10 +594,10 @@ export default class Employee extends PureComponent {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="state" class="col-sm-4">State:</label>
-                                            <div class="form-control col-sm-6">
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="state" className="col-sm-4">State:</label>
+                                            <div className="form-control col-sm-6">
                                                 <RegionDropdown
                                                     id="state"
                                                     name="state"
@@ -586,31 +608,31 @@ export default class Employee extends PureComponent {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="PIN" class="col-sm-4">PIN:</label>
-                                            <input type="text" onChange={(e) => this.changeValuePermanentAddress(e)} disabled={this.state.disablePerAdd} value={employeePermanentAddress.pincode} class="form-control col-sm-6" id="email" placeholder="Enter Email" name="email" />
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="PIN" className="col-sm-4">PIN:</label>
+                                            <input type="text" onChange={(e) => this.changeValuePermanentAddress(e)} disabled={this.state.disablePerAdd} value={employeePermanentAddress.pincode} className="form-control col-sm-6" id="email" placeholder="Enter Email" name="email" />
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="component-footer">
-                                    <button class="pull-right btn btn-xebia" onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedAddress('permanent')} >
-                                        <i class="fa fa-save"></i> Save
+                                <div className="component-footer">
+                                    <button className="pull-right btn btn-xebia" onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedAddress('permanent')} >
+                                        <i className="fa fa-save"></i> Save
                                     </button>
                                     &nbsp;
-                                    <span class="pull-right btn btn-xebia" onClick={() => this.onCancel()} >
-                                        <i class="fa fa-cut"></i> Cancel
+                                    <span className="pull-right btn btn-xebia" onClick={() => this.onCancel()} >
+                                        <i className="fa fa-cut"></i> Cancel
                                     </span>
                                 </div>
                             </div>
                             <hr />
-                            <div class="component-view container current-address">
-                                <div class="component-head row">
-                                    <div class="col-sm-4">
+                            <div className="component-view container current-address">
+                                <div className="component-head row">
+                                    <div className="col-sm-4">
                                         <h2>Current Address &nbsp;
-                                        <button onClick={() => this.setState({ disableCurAdd: false })} class="btn btn-xebia">
-                                                EDIT <i class="fa fa-edit"></i>
+                                        <button onClick={() => this.setState({ disableCurAdd: false })} className="btn btn-xebia">
+                                                EDIT <i className="fa fa-edit"></i>
                                             </button>
                                         </h2>
                                     </div>
@@ -626,23 +648,23 @@ export default class Employee extends PureComponent {
                                     />
                                     <hr />
                                 </div>
-                                <div class="component-body row" id="current-address">
-                                    <div class="component-body col-sm-12">
-                                        <div class="form-group row">
-                                            <label for="add_line_1" class="col-sm-2">Address Line 1:</label>
-                                            <input type="text" onChange={(e) => this.changeValueCurrentAddress(e)} disabled={this.state.disableCurAdd} class="form-control col-sm-8" id="add_line1" value={employeeCurrentAddress.add_line1} placeholder="Enter Address Line 1" name="add_line1" />
+                                <div className="component-body row" id="current-address">
+                                    <div className="component-body col-sm-12">
+                                        <div className="form-group row">
+                                            <label for="add_line_1" className="col-sm-2">Address Line 1:</label>
+                                            <input type="text" onChange={(e) => this.changeValueCurrentAddress(e)} disabled={this.state.disableCurAdd} className="form-control col-sm-8" id="add_line1" value={employeeCurrentAddress.add_line1} placeholder="Enter Address Line 1" name="add_line1" />
                                         </div>
                                     </div>
-                                    <div class="component-body col-sm-12">
-                                        <div class="form-group row">
-                                            <label for="add_line_2" class="col-sm-2">Address Line 2:</label>
-                                            <input type="text" onChange={(e) => this.changeValueCurrentAddress(e)} disabled={this.state.disableCurAdd} class="form-control col-sm-8" id="add_line2" value={employeeCurrentAddress.add_line2} placeholder="Enter Address Line 2" name="add_line2" />
+                                    <div className="component-body col-sm-12">
+                                        <div className="form-group row">
+                                            <label for="add_line_2" className="col-sm-2">Address Line 2:</label>
+                                            <input type="text" onChange={(e) => this.changeValueCurrentAddress(e)} disabled={this.state.disableCurAdd} className="form-control col-sm-8" id="add_line2" value={employeeCurrentAddress.add_line2} placeholder="Enter Address Line 2" name="add_line2" />
                                         </div>
                                     </div>
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="country" class="col-sm-4">Country:</label>
-                                            <div class="form-control col-sm-6">
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="country" className="col-sm-4">Country:</label>
+                                            <div className="form-control col-sm-6">
                                                 <CountryDropdown
                                                     id="country"
                                                     value={employeeCurrentAddress.country}
@@ -652,10 +674,10 @@ export default class Employee extends PureComponent {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="component-body-right col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="state" class="col-sm-4">State:</label>
-                                            <div class="form-control col-sm-6">
+                                    <div className="component-body-right col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="state" className="col-sm-4">State:</label>
+                                            <div className="form-control col-sm-6">
                                                 <RegionDropdown
                                                     id="state"
                                                     name="state"
@@ -666,24 +688,27 @@ export default class Employee extends PureComponent {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="component-body-left col-sm-6">
-                                        <div class="form-group row">
-                                            <label for="PIN" class="col-sm-4">PIN:</label>
-                                            <input type="text" onChange={(e) => this.changeValueCurrentAddress(e)} disabled={this.state.disableCurAdd} value={employeeCurrentAddress.pincode} class="form-control col-sm-6" id="pincode" placeholder="Enter Pin Code" name="pincode" />
+                                    <div className="component-body-left col-sm-6">
+                                        <div className="form-group row">
+                                            <label for="PIN" className="col-sm-4">PIN:</label>
+                                            <input type="text" onChange={(e) => this.changeValueCurrentAddress(e)} disabled={this.state.disableCurAdd} value={employeeCurrentAddress.pincode} className="form-control col-sm-6" id="pincode" placeholder="Enter Pin Code" name="pincode" />
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="component-footer">
-                                    <button class="pull-right btn btn-xebia" onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedAddress('current')} >
-                                        <i class="fa fa-save"></i> Save
+                                <div className="component-footer">
+                                    <button className="pull-right btn btn-xebia" onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedAddress('current')} >
+                                        <i className="fa fa-save"></i> Save
                                     </button>
                                     &nbsp;
-                                    <span class="pull-right btn btn-xebia" onClick={() => this.onCancel()} >
-                                        <i class="fa fa-cut"></i> Cancel
+                                    <span className="pull-right btn btn-xebia" onClick={() => this.onCancel()} >
+                                        <i className="fa fa-cut"></i> Cancel
                                     </span>
                                 </div>
                             </div>
+                        </div>
+                        <div id="employee-skill-section" className={this.state.skill ? 'hidden':''}>
+                        Hello
                         </div>
                     </div>
                 </section>

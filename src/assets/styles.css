@@ -23,6 +23,10 @@
    height:18vh;
  }
 
+ .homeButtons{
+   margin-top:70px;
+ }
+
  .homeButton{
    background-color: #6d2d60;
    border-radius: 80px;
@@ -31,7 +35,8 @@
 
 .loginPage{
   background-color: #6d2d60;
-    height: 100vh;
+  height: calc(100vh - 51px);
+  margin-top: 51px;
 }
 
 .roundedbutton{

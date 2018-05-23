@@ -175,26 +175,26 @@ export default class Project extends Component {
                         <h2> Xebia IT Architects</h2>
                     </NavLink>
                 </div>
-                <section id="workboard-section" class="row">
-                    <div id="sidebar-section" class="col-sm-2">
+                <section id="workboard-section" className="row">
+                    <div id="sidebar-section" className="col-sm-2">
                         <div>
-                            <i class="fa fa-arrow-circle-up"></i>
-                                        <button onClick={()=>{this.showProjectForm()}}  class="pull-right btn btn-xebia">
-                                            Create New Project <i class="fa fa-edit"></i> 
+                            <i className="fa fa-arrow-circle-up"></i>
+                                        <button onClick={()=>{this.showProjectForm()}}  className="pull-right btn btn-xebia">
+                                            Create New Project <i className="fa fa-edit"></i> 
                                         </button>
                         </div>
                         <div>Search</div>
-                        <div class="sidebar container row">
-                            <div class="search-section">
-                                <div class="input-group mb-3">
-                                <input type="text" name="searchbar" class="form-control" onChange={(e)=>this.searchInList(e)} placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="basic-addon2">
-                                            <i class="fa fa-search"></i>
+                        <div className="sidebar container row">
+                            <div className="search-section">
+                                <div className="input-group mb-3">
+                                <input type="text" name="searchbar" className="form-control" onChange={(e)=>this.searchInList(e)} placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                                    <div className="input-group-append">
+                                        <span className="input-group-text" id="basic-addon2">
+                                            <i className="fa fa-search"></i>
                                         </span>
                                     </div>
                                 </div>
-                                {/* <div class="criteria-section">
+                                {/* <div className="criteria-section">
                                     <a href="#">Active(default)</a> |
                                     <a href="#">All</a> |
                                     <a href="#">InActive</a>
@@ -204,14 +204,14 @@ export default class Project extends Component {
                             <div className="result-section" className={this.state.resultSection ? 'hidden' : ''}>
                             {
                                 projectList.map(project => (
-                                <div class="employee">
-                                        <div class="rs-disp-line">
+                                <div className="employee">
+                                        <div className="rs-disp-line">
                                                 <span>Project </span>:
                                                 <span>
-                                                    <a class="btnLinks" onClick={() => {this.getProjectDetails(project.id)}}>{project.name}</a>
+                                                    <a className="btnLinks" onClick={() => {this.getProjectDetails(project.id)}}>{project.name}</a>
                                                 </span>
                                         </div>
-                                        <div class="rs-disp-line">
+                                        <div className="rs-disp-line">
                                             <span>Project Manager </span>:
                                             <span>
                                             <NavLink to={{ pathname: '/home/employee', state: { emp_id: project.manager} }} className="homeIcon" exact >
@@ -222,7 +222,7 @@ export default class Project extends Component {
                                                 {/* <a href="" data-src="project" data-opt="1">Mckinsey DOF</a>  */}
                                             </span>
                                         </div>
-                                        <div class="criteria-section">
+                                        <div className="criteria-section">
                                             <a href="#" onClick={() => {this.getProjectDetails(project.id)}}>Details</a> |
                                             <a href="#">Team</a> |
                                             {/* <a href="#">Skills</a> */}
@@ -236,14 +236,14 @@ export default class Project extends Component {
                             <div className="search-result-section" className={this.state.searchResultSection ? 'hidden' : ''}>
                             {
                                 this.state.searchResult.map(project => (
-                                <div class="employee">
-                                        <div class="rs-disp-line">
+                                <div className="employee">
+                                        <div className="rs-disp-line">
                                                 <span>Project </span>:
                                                 <span>
-                                                    <a class="btnLinks" onClick={() => {this.getProjectDetails(project.id)}}>{project.name}</a>
+                                                    <a className="btnLinks" onClick={() => {this.getProjectDetails(project.id)}}>{project.name}</a>
                                                 </span>
                                         </div>
-                                        <div class="rs-disp-line">
+                                        <div className="rs-disp-line">
                                             <span>Project Manager </span>:
                                             <span>
                                             <NavLink to={{ pathname: '/home/employee', state: { emp_id: project.manager} }} className="homeIcon" exact >
@@ -254,7 +254,7 @@ export default class Project extends Component {
                                                 {/* <a href="" data-src="project" data-opt="1">Mckinsey DOF</a>  */}
                                             </span>
                                         </div>
-                                        <div class="criteria-section">
+                                        <div className="criteria-section">
                                             <a href="#">Details</a> |
                                             <a href="#">Team</a> |
                                             {/* <a href="#">Skills</a> */}
@@ -268,55 +268,55 @@ export default class Project extends Component {
                     </div>
                     <div className="col-sm-9">
                     <div id="view-section" className={this.state.hidden ? 'hidden' : ''}>
-                        <div class="component-view container">
-                            <div class="component-head">
+                        <div className="component-view container">
+                            <div className="component-head">
                                 <h2>Details
-                                    <i class="fa fa-arrow-circle-up"></i>
-                                        <button onClick={()=>{this.editProject()}} hidden={this.state.create?true:false} class="pull-right btn btn-xebia">
-                                            EDIT <i class="fa fa-edit"></i> 
+                                    <i className="fa fa-arrow-circle-up"></i>
+                                        <button onClick={()=>{this.editProject()}} hidden={this.state.create?true:false} className="pull-right btn btn-xebia">
+                                            EDIT <i className="fa fa-edit"></i> 
                                         </button>
                                 </h2>
                             </div>
                             <hr/>
-                            <div class="component-body row">
+                            <div className="component-body row">
 
-                                <div class="component-body-left col-sm-6">
-                                    <div class="form-group row">
-                                        <label for="account_id" class="col-sm-4">Account ID:</label>
-                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} class="form-control col-sm-6" id="account_id" value={projectDetails.account_id} placeholder="Enter Account ID" name="account_id"/>
+                                <div className="component-body-left col-sm-6">
+                                    <div className="form-group row">
+                                        <label for="account_id" className="col-sm-4">Account ID:</label>
+                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} className="form-control col-sm-6" id="account_id" value={projectDetails.account_id} placeholder="Enter Account ID" name="account_id"/>
                                     </div>
                                 </div>
 
-                                <div class="component-body-left col-sm-6">
-                                    <div class="form-group row">
-                                        <label for="proj_name" class="col-sm-4">Project Name:</label>
-                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} class="form-control col-sm-6" id="name" value={projectDetails.name} placeholder="Enter Project Name" name="name"/>
+                                <div className="component-body-left col-sm-6">
+                                    <div className="form-group row">
+                                        <label for="proj_name" className="col-sm-4">Project Name:</label>
+                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} className="form-control col-sm-6" id="name" value={projectDetails.name} placeholder="Enter Project Name" name="name"/>
                                     </div>
                                 </div>
-                                <div class="component-body-right col-sm-6">
-                                    <div class="form-group row">
-                                        <label for="proj_mngr_id" class="col-sm-4">Project Manager ID:</label>
-                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} class="form-control col-sm-6" id="manager" value={projectDetails.manager} placeholder="Enter Project Manager ID" name="manager"/>
+                                <div className="component-body-right col-sm-6">
+                                    <div className="form-group row">
+                                        <label for="proj_mngr_id" className="col-sm-4">Project Manager ID:</label>
+                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} className="form-control col-sm-6" id="manager" value={projectDetails.manager} placeholder="Enter Project Manager ID" name="manager"/>
                                     </div>
                                 </div>
 
-                                {/* <div class="component-body-right col-sm-6">
-                                    <div class="form-group row">
-                                        <label for="proj_mngr_name" class="col-sm-4">Project Manager Name:</label>
-                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} class="form-control col-sm-6" id="proj_mngr_name"  value={projectDetails.proj_mngr_name} name="proj_mngr_name" placeholder="Enter Project Manager ID"/>
+                                {/* <div className="component-body-right col-sm-6">
+                                    <div className="form-group row">
+                                        <label for="proj_mngr_name" className="col-sm-4">Project Manager Name:</label>
+                                        <input type="text" onChange={(e)=>this.changeValue(e)} disabled={this.state.disabled} className="form-control col-sm-6" id="proj_mngr_name"  value={projectDetails.proj_mngr_name} name="proj_mngr_name" placeholder="Enter Project Manager ID"/>
                                     </div>
                                 </div> */}
                             </div>
                         </div>
-                        <div class="component-footer">
-                            <button class="pull-right btn btn-xebia" onClick={this.state.create?()=>this.saveNewProject():()=>this.saveUpdatedProject()} >
-                                <i class="fa fa-save"></i> Save
+                        <div className="component-footer">
+                            <button className="pull-right btn btn-xebia" onClick={this.state.create?()=>this.saveNewProject():()=>this.saveUpdatedProject()} >
+                                <i className="fa fa-save"></i> Save
                             </button>
-                            <span class="pull-right btn btn-xebia">
-                                <i class="fa fa-cut"></i> Cancel
+                            <span className="pull-right btn btn-xebia">
+                                <i className="fa fa-cut"></i> Cancel
                             </span>
-                            {/* <span class="pull-right btn btn-xebia">
-                                <i class="fa fa-ban"></i> Clear
+                            {/* <span className="pull-right btn btn-xebia">
+                                <i className="fa fa-ban"></i> Clear
                             </span> */}
                         </div>
                     </div>

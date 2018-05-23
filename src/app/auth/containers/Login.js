@@ -4,7 +4,7 @@ import * as actions from "../state/actions";
 
 const mapStateToProps = (state) => {
     return {
-       isAuthenticated:state.authState.isAuthenticated
+    //    isAuthenticated:state.authState.isAuthenticated
     }
 }
 

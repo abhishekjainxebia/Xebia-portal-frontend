@@ -24,6 +24,10 @@ const mapDispatchToProps = (dispatch) => {
       let actionFn = actions.fetchEmployees();
       dispatch(actionFn)
     },
+    getProjectList: function () {
+      let actionFn = actions.fetchEmployees();
+      dispatch(actionFn)
+    },
     fetchEmployeeDetails: function (id) {
       let actionFn = actions.fetchEmployeeDetails(id);
       dispatch(actionFn)

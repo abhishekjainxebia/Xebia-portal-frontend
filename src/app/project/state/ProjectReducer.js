@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 }
 
 export default function ProjectReducer(state = INITIAL_STATE, action) {
-    console.log("stateReducer ", state, action);
     switch(action.type) {
         case ActionTypes.INIT_PROJECTLIST:
             return Object.assign({}, state, {projectList: action.payload.projectList});

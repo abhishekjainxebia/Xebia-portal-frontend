@@ -3,7 +3,7 @@ import * as ActionTypes from "./ActionTypes";
 import {BrowserRouter} from 'react-router';
 
 //thunk in es6
-export function loginSuccess(authToken) {
+export function loginSuccess() {
   return function(dispatch) {
     dispatch({type: ActionTypes.LOGGED_IN})
   };
