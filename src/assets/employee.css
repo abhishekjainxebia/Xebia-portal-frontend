@@ -72,6 +72,15 @@ button.close{
     margin-left: 5px;
     margin-right: 5px;
 }
+
+#country{
+    border:none;
+}
+
+#state{
+    border:none;
+}
+
 .add-btn{
     font-size: 2rem;
     color: #69215e;
@@ -203,6 +212,22 @@ hr{
     border-radius: 0px;
     margin:2px;
 }
+
+.btn-xebia-purpleback{
+    color:#6c1e5f;
+    background-color: #f7eff7;
+    border-radius: 0px;
+    margin:2px;
+}
+
+.btn-xebia-purpleback:hover{
+    color:#f7eff7;
+    background-color:  #6c1e5f;
+    border:1px solid #f7eff7;
+    border: solid 1px !important;
+
+}
+
 .btn-xebia:hover{
     color:#6c1e5f;
     background-color:  #f7eff7;
@@ -231,6 +256,7 @@ label{
     border-left: 0px ;
     border-right: 0px ;
     border-radius: 0px;
+    padding: 0px 10px !important;
 }
 
 .form-control:active{

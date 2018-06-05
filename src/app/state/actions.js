@@ -1,5 +1,7 @@
-import * as ActionTypes from "./action-types";
 import * as service from "./service";
+import {BrowserRouter} from 'react-router';
+import * as ActionTypes from "./action-types";
+
 export function initEmployees(employeeList) {
     return {
         type: ActionTypes.INIT_EMPLOYEELIST,
@@ -45,11 +47,57 @@ export function initiateEmployeeProjects(employeeProjectList) {
     }
 }
 
-export function loading(status) {
+export function updateEmployee(editedEmployeeDetails) {
     return {
-        type: ActionTypes.LOADING,
+        type: ActionTypes.INIT_EMPLOYEEDETAILS,
         payload: {
-            status: status
+            employeeDetails: editedEmployeeDetails
+        }
+    }
+}
+
+export function initProjects(projectList){
+    return {
+        type: ActionTypes.INIT_PROJECTLIST,
+        payload: {
+            projectList: projectList
+        }
+    }
+}
+
+export function initProjectDetails(projectDetails){
+    return {
+        type: ActionTypes.INIT_PROJECTDETAILS,
+        payload: {
+            projectDetails: projectDetails
+        }
+    }
+}
+
+export function initEditedProjects(updatedProjectDetails){
+    return {
+        type: ActionTypes.INIT_EDITEDPROJECTDETAILS,
+        payload: {
+            updatedProjectDetails: updatedProjectDetails
+        }
+    }
+}
+
+//return action as object
+export function initError(error) {
+    return {
+        type: ActionTypes.ERROR,
+        payload: {
+            error: error
+        }
+    }
+}
+
+export function updateProject(editedProjectDetails){
+    return {
+        type: ActionTypes.INIT_PROJECTDETAILS,
+        payload: {
+            projectDetails: editedProjectDetails
         }
     }
 }
@@ -59,7 +107,6 @@ export function loading(status) {
 //as per thunk, return action as function
 export function fetchEmployees() {
     return function (dispatch, getState) {
-
         //dispatch(loading(true));
         console.log("called by thunk");
         service.getEmployeesList()
@@ -108,15 +155,6 @@ export function getEmployeeCurrentAddress(id) {
     }
 }
 
-export function updateEmployee(editedEmployeeDetails) {
-    return {
-        type: ActionTypes.INIT_EMPLOYEEDETAILS,
-        payload: {
-            employeeDetails: editedEmployeeDetails
-        }
-    }
-}
-
 export function saveUpdatedEmployee(EmployeeDetailsToSave, callbackResult) {
     return function (dispatch, getState) {
         //dispatch(loading(true));
@@ -160,5 +198,78 @@ export function saveUpdatedAddress(emp_id, updatedAddressDetails, callbackResult
             .then(data => {
                 callbackResult(data)
             });
+    }
+}
+
+// //thunk in es6
+// export function loginSuccess() {
+//   return function(dispatch) {
+//     dispatch({type: ActionTypes.LOGGED_IN})
+//   };
+// };
+
+// //thunk in es6
+// export const logout = () => {
+//   return (dispatch) => {
+//      storage.removeItem("token");
+//      dispatch({type: ActionTypes.LOGGED_OUT});
+//      //history.push("/");
+//   };
+// };
+
+
+//tunk ios middleware
+//async calls, actions
+//as per thunk, return action as function
+export function fetchProjects(){
+    return function(dispatch,getState){
+
+       // dispatch(loading(true));
+        console.log("called by thunk");
+        service.getProjectsList()
+        .then( projectList =>{
+            let action = initProjects(projectList);
+            //action object
+            dispatch(action);
+            //dispatch(loading(false));
+        });
+    }
+}
+
+export function fetchProjectDetails(id){
+    return function(dispatch,getState){
+        //dispatch(loading(true));
+        service.getProjectById(id)
+        .then( projectDetails =>{
+            let action = initProjectDetails(projectDetails);
+            //action object
+            dispatch(action);
+            //dispatch(loading(false));
+        });
+    }
+}
+
+export function saveUpdatedProject(ProjectDetailsToSave,callbackResult){
+    return function(dispatch,getState){
+        //dispatch(loading(true));
+        console.log("called by thunk");
+        service.updateProject(ProjectDetailsToSave)
+        .then(data =>{
+            callbackResult(data)
+            console.log(updatedProjectDetails)
+        });
+    }
+}
+
+export function saveNewProject(ProjectDetailsToSave,callbackResult){
+    return function(dispatch,getState){
+        //dispatch(loading(true));
+        console.log("called by thunk");
+        service.saveProject(ProjectDetailsToSave)
+        .then(updatedProjectDetails =>{
+            callbackResult(updatedProjectDetails)
+            console.log(updatedProjectDetails)
+            //dispatch(loading(false));
+        });
     }
 }

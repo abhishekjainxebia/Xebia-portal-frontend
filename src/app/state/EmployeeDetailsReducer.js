@@ -1,4 +1,4 @@
-import * as ActionTypes from '../state/action-types';
+import * as ActionTypes from './action-types';
 
 const INITIAL_STATE = {
     employeeDetails: [],

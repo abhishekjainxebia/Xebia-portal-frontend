@@ -23,6 +23,7 @@ render( (
                         <Routes/>
                 </PersistGate>
         </Provider>
+        
 ),   //virtual dom
         document.getElementById("root") //real dom
 )

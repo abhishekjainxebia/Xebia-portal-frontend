@@ -14,11 +14,11 @@ import {App}
         from "./App";
 
 
-import Home from "./home/containers/Home";
-import Login from "./auth/containers/Login";
-import AuthRoute from "./auth/components/AuthRoute";
-import Employee from "./employee/containers/Employee";
-import Project from "./project/containers/Project";
+import Home from "./components/Home";
+import Login from "./containers/Login";
+import AuthRoute from "./components/AuthRoute";
+import Employee from "./containers/Employee";
+import Project from "./containers/Project";
 // import ProductList from "./cart/containers/ProductList";
 // //default import, alias by default
 // import ReduxHome from "./containers/ReduxHome";
@@ -31,8 +31,8 @@ export default function Routes(props) {
             <App>
                 <Switch>
                     <AuthRoute path="/" exact  component={Home} />
-                    <AuthRoute path='/home/employee'  component={Employee} />
-                    <AuthRoute path='/home/project' component={Project} />
+                    <AuthRoute path='/employee'  component={Employee} />
+                    <AuthRoute path='/project' component={Project} />
                     {/* <Route path="/about" exact  component={About} /> */}
                     <Route path="/login" history={history} exact  component={Login} />
                 </Switch>

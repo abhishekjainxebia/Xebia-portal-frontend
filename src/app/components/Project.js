@@ -137,6 +137,8 @@ export default class Project extends Component {
     }
 
     componentDidMount() {
+        this.props.fetchEmployees();
+        this.props.fetchProjects();
     }
 
     render() {

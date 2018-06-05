@@ -6,11 +6,11 @@ import {
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import AuthReducer from './auth/state/AuthReducer';
-import EmployeeReducer from './employee/state/EmployeeReducer';
-import EmployeeDetailsReducer from './employee/state/EmployeeDetailsReducer';
-import ProjectReducer from './project/state/ProjectReducer';
-import ProjectDetailsReducer from './project/state/ProjectDetailsReducer';
+import AuthReducer from './state/AuthReducer';
+import EmployeeReducer from './state/EmployeeReducer';
+import EmployeeDetailsReducer from './state/EmployeeDetailsReducer';
+import ProjectReducer from './state/ProjectReducer';
+import ProjectDetailsReducer from './state/ProjectDetailsReducer';
 
 import thunk from 'redux-thunk';
 

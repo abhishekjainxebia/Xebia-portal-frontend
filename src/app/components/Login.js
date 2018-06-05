@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import cookie from 'react-cookies'
 import PropTypes from "prop-types";
-import Navbar from "../../components/Navbar"
+import Navbar from "./Navbar"
 import * as authApi from "../state/service";
 
 const storage = window.sessionStorage;
@@ -34,7 +34,7 @@ export default class Login extends Component {
     login = (e, history) => {
         const loginResult = (data) => {
             if (data.code == 1000) {
-                this.props.loginSuccess();
+                //this.props.loginSuccess();
                 storage.setItem("authToken", data.authToken)
                 storage.setItem("isAuthenticated", true)
                 cookie.save('authToken', data.authToken, { path: '/' })

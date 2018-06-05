@@ -24,6 +24,10 @@ const mapDispatchToProps = (dispatch) => {
       let actionFn = actions.fetchEmployees();
       dispatch(actionFn)
     },
+    fetchProjects: function() {
+      let actionFn=actions.fetchProjects();
+      dispatch(actionFn)
+    },
     getProjectList: function () {
       let actionFn = actions.fetchEmployees();
       dispatch(actionFn)
@@ -59,21 +63,7 @@ const mapDispatchToProps = (dispatch) => {
     getEmployeeCurrentAddress: function (id) {
       let actionFn = actions.getEmployeeCurrentAddress(id);
       dispatch(actionFn)
-    },
-    updatePermanentAddress: function (employeePermanentAddress) {
-      let actionFn = actions.initEmployeePermanentAddress(employeePermanentAddress);
-      dispatch(actionFn)
-    },
-    updateCurrentAddress: function (employeeCurrentAddress) {
-      let actionFn = actions.initEmployeeCurrentAddress(employeeCurrentAddress);
-      dispatch(actionFn)
-    },
-    saveUpdatedAddress:function(emp_id,updatedEmployeeAddress,callbackResult){
-      let actionFn = actions.saveUpdatedAddress(emp_id,updatedEmployeeAddress,callbackResult);
-      dispatch(actionFn)
-    }
-    
-    
+    } 
   }
 }
 
