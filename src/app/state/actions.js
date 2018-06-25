@@ -47,14 +47,23 @@ export function initiateEmployeeProjects(employeeProjectList) {
     }
 }
 
-export function updateEmployee(editedEmployeeDetails) {
+export function initProjEmpList(projectTeam) {
     return {
-        type: ActionTypes.INIT_EMPLOYEEDETAILS,
+        type: ActionTypes.INIT_PROJECTTEAM,
         payload: {
-            employeeDetails: editedEmployeeDetails
+            projectTeam: projectTeam
         }
     }
 }
+
+// export function updateEmployee(editedEmployeeDetails) {
+//     return {
+//         type: ActionTypes.INIT_EMPLOYEEDETAILS,
+//         payload: {
+//             employeeDetails: editedEmployeeDetails
+//         }
+//     }
+// }
 
 export function initProjects(projectList){
     return {
@@ -74,14 +83,14 @@ export function initProjectDetails(projectDetails){
     }
 }
 
-export function initEditedProjects(updatedProjectDetails){
-    return {
-        type: ActionTypes.INIT_EDITEDPROJECTDETAILS,
-        payload: {
-            updatedProjectDetails: updatedProjectDetails
-        }
-    }
-}
+// export function initEditedProjects(updatedProjectDetails){
+//     return {
+//         type: ActionTypes.INIT_EDITEDPROJECTDETAILS,
+//         payload: {
+//             updatedProjectDetails: updatedProjectDetails
+//         }
+//     }
+// }
 
 //return action as object
 export function initError(error) {
@@ -93,14 +102,14 @@ export function initError(error) {
     }
 }
 
-export function updateProject(editedProjectDetails){
-    return {
-        type: ActionTypes.INIT_PROJECTDETAILS,
-        payload: {
-            projectDetails: editedProjectDetails
-        }
-    }
-}
+// export function updateProject(editedProjectDetails){
+//     return {
+//         type: ActionTypes.INIT_PROJECTDETAILS,
+//         payload: {
+//             projectDetails: editedProjectDetails
+//         }
+//     }
+// }
 
 //tunk ios middleware
 //async calls, actions
@@ -190,6 +199,19 @@ export function getEmployeeProjects(id,callback) {
     }
 }
 
+export function getProjEmpList(callback) {
+    return function (dispatch, getState) {
+        service.getProjEmpList()
+            .then(projEmpList => {
+                callback(projEmpList)
+                //let action = initEmployeeProjectDetails(employeeProjectDetails);
+                //action object
+                //dispatch(action);
+                //callbackFunc(data)
+            });
+    }
+}
+
 export function saveUpdatedAddress(emp_id, updatedAddressDetails, callbackResult) {
     return function (dispatch, getState) {
         //dispatch(loading(true));
@@ -249,11 +271,12 @@ export function fetchProjectDetails(id){
     }
 }
 
-export function saveUpdatedProject(ProjectDetailsToSave,callbackResult){
+
+export function saveUpdatedProject(updatedProjectDetails,callbackResult){
     return function(dispatch,getState){
         //dispatch(loading(true));
         console.log("called by thunk");
-        service.updateProject(ProjectDetailsToSave)
+        service.updateProject(updatedProjectDetails)
         .then(data =>{
             callbackResult(data)
             console.log(updatedProjectDetails)

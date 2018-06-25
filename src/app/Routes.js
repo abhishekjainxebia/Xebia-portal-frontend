@@ -33,8 +33,7 @@ export default function Routes(props) {
                     <AuthRoute path="/" exact  component={Home} />
                     <AuthRoute path='/employee'  component={Employee} />
                     <AuthRoute path='/project' component={Project} />
-                    {/* <Route path="/about" exact  component={About} /> */}
-                    <Route path="/login" history={history} exact  component={Login} />
+                    <Route path="/login" exact  component={Login} />
                 </Switch>
             </App>
         </Router>

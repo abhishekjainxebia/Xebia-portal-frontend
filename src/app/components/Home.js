@@ -15,19 +15,19 @@ export default class Home extends Component {
             <div>
                 <Navbar />
                 <div className="homeButtons">
-                    <div className="button-row row">
-                        <NavLink to="/employee" className="col-1 homeButton" exact>
-                            <button >
+                    <div className="row">
+                        <NavLink to="/employee" className="col-4 " exact>
+                            <button className="btn-home">
                                 Employee
                                 </button>
                         </NavLink>
-                        <NavLink to="/project" className="col-1 homeButton" exact>
-                            <button >
+                        <NavLink to="/project" className="col-4 " exact>
+                            <button className="btn-home">
                                 Project
                                 </button>
                         </NavLink>
-                        <NavLink to="/report" className="col-1 homeButton" exact>
-                            <button >
+                        <NavLink to="/report" className="col-4" exact>
+                            <button className="btn-home">
                                 Report
                                 </button>
                         </NavLink>

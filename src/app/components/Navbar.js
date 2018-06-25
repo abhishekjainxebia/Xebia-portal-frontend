@@ -36,7 +36,7 @@ export default class Navbar extends Component {
                             </NavLink>
                     </div>
                     <div className={this.state.logoutHidden ? 'hidden' : 'col-9'}>
-                        <button className="float-right btn btn-xebia-2" onClick={()=>this.logout()}>
+                        <button className="float-right btn btn-xebia-purpleback" onClick={()=>this.logout()}>
                                     Logout
                         </button>
                     </div>

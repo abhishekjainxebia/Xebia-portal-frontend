@@ -1,6 +1,7 @@
 
 import React, { PureComponent, Component } from "react";
 import PropTypes from "prop-types";
+import { NavLink } from 'react-router-dom';
 
 export default class EmployeeProject extends PureComponent {
     constructor(props) {
@@ -134,7 +135,15 @@ export default class EmployeeProject extends PureComponent {
                                                 }
                                                 
                                             </select>
-                                            <div className="col-sm-7">
+                                            <div className="col-sm-2">
+                                                <span className="float-left">
+                                                    <NavLink to={{ pathname: '/project', state: { proj_id: employeeProject.project_id } }} className="btn btn-xebia" exact >
+                                                        View
+                                                    </NavLink>
+                                                </span>
+                                            </div>
+
+                                            <div className="col-sm-5">
                                                 <button
                                                     className="float-right btn btn-xebia"
                                                     onClick={() => this.deleteEmpProject(employeeProject.id)}

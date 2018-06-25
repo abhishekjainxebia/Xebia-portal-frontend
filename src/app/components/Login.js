@@ -1,15 +1,15 @@
 
 import React, { Component } from "react";
 import cookie from 'react-cookies'
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Navbar from "./Navbar"
 import * as authApi from "../state/service";
 
 const storage = window.sessionStorage;
 
 export default class Login extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor() {
+        super();
 
         this.state = {
             loginCredentials: {
@@ -31,7 +31,7 @@ export default class Login extends Component {
         this.state.loginCredentials = Object.assign({}, this.state.loginCredentials, { [name]: value })
     }
 
-    login = (e, history) => {
+    login = (e) => {
         const loginResult = (data) => {
             if (data.code == 1000) {
                 //this.props.loginSuccess();

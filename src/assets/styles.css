@@ -5,6 +5,284 @@
  *    user zoom.
  */
 
+.Soft.Blocked {
+  color: blue;
+}
+.Reigned {
+  color: red;
+}
+.Long.Leave {
+  color: red;
+}
+.Deployable{
+  color: green;
+}
+.Staffed {
+  color: black;
+}
+.full-page-popup-bg{
+  content: "";
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  background: #0000b0;
+}
+.full-page-popup {
+  width: 50vw;
+  height: 98vh;
+  position: fixed;
+  top: 1vh;
+  left: 25vw;
+  z-index: 100;
+  border-radius: 10px;
+  background: #ececec;
+  box-shadow: 0px 0px 10px black;
+}
+header {
+  height: 50px;
+  padding: 10px;
+  border-bottom: 1px solid grey;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+button.close{
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 2.75rem;
+}
+.form-group{
+  margin: 10px;
+}
+.centered-text{
+  text-align: center;
+}
+.detail-card{
+  color: #6a205f;
+  font-size: 12px;
+  background: #e8d7e6;
+  margin: 5px;
+  border: 2px solid #ededf1;
+  padding: 10px;
+  border-radius: 5px;
+  
+}
+.employee-section{
+  margin-left: 155px;
+  box-shadow: 0px 3px 10px;
+  padding-bottom: 20px;
+}
+.margin-5{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#country{
+  border:none;
+}
+
+#state{
+  border:none;
+}
+
+.add-btn{
+  font-size: 2rem;
+  color: #69215e;
+  padding-top: 5px;
+  padding-left: 20px;
+}
+.app-skills{
+  width: 100%;
+}
+
+#nav-section{
+  width: 100%;
+  height: 50px;
+  color: #ffffff;
+  background-color: #6c1e5f;
+  padding: 0px 12px;
+  margin: 0px 0px;
+  position: absolute;
+  top: 0;
+  z-index: 100
+}
+/* nav{
+  background-color: #6c1e5f;
+  width: 100vw;
+  height:10vh;
+  -webkit-box-shadow: 2px -4px 16px 5px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px -4px 16px 5px rgba(0,0,0,0.75);
+box-shadow: 2px -4px 16px 5px rgba(0,0,0,0.75);
+
+} */
+
+.hidden { display:none; }
+
+#view-section{
+margin: auto;
+}
+
+#employee-project-section{
+  margin: auto;
+  height: 100vh;  
+}
+
+#employee-address-section{
+  margin: auto;
+  height: 100vh;  
+}
+
+.homeIcon{
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+#homeIconNav{
+  padding: 6px 0px;
+}
+
+.work-section{
+  margin: 0px 241px;
+}
+
+#workboard-section{
+  min-height:90vh;
+  margin: 51px 0px 0px 0px;
+}
+
+#sidebar-section{
+  color: #ffffff;
+  padding: 0px 12px;
+  background-color: #6c1e5f;
+  height: calc(100vh - 51px);
+  overflow-y: scroll;
+  position: absolute;
+ /* overflow-y: scroll; */
+ /* top: 0; */
+ /* bottom: 0; */
+  }
+.criteria-section{
+  text-align: center;
+}
+.component-view{
+  margin: 1%;
+  -webkit-box-shadow: 2px -4px 16px 5px rgba(230,230,230,1);
+-moz-box-shadow: 2px -4px 16px 5px rgba(230,230,230,1);
+box-shadow: 2px -4px 16px 5px rgba(230,230,230,1);
+}
+
+.component-footer{
+  padding-bottom: 2%;
+}
+.search-section > .form-control:focus{
+  border: none;
+}
+
+.btnLinks{
+  cursor: pointer;
+  color:white;
+}
+
+.btnLinks:hover{
+  text-decoration: underline;
+  color:white;
+}
+
+html,body{
+  overflow-x:hidden; 
+  font-size: 12px;
+}
+a{
+  text-decoration: none;
+  color: #fff;
+}
+a:hover{
+  color: #f7eff7;
+}
+
+hr{
+  width: 100%;
+  color: #f7eff7;
+  border:1px solid #f7eff7;
+}
+.result-section .search-result-section{
+  width: 100%;
+}
+.btn-xebia{
+  color:#f7eff7;
+  background-color: #6c1e5f;
+  border:1px solid #f7eff7;
+  border-radius: 0px;
+  margin:2px;
+}
+
+.btn-xebia:hover{
+  color:#6c1e5f;
+  background-color:  #f7eff7;
+  border:1px solid #6c1e5f;
+}
+
+.btn-xebia-purpleback{
+  color:#6c1e5f;
+  background-color: #f7eff7;
+  border-radius: 0px;
+  margin:10px 2px 2px 2px;
+}
+
+.btn-xebia-purpleback:hover{
+  color:#f7eff7;
+  background-color:  #6c1e5f;
+  border:1px solid #f7eff7;
+  border: solid 1px !important;
+
+}
+
+.btn-xebia-2{
+  color:#6c1e5f;
+  background-color:  #f7eff7;
+  border:1px solid #6c1e5f;
+  border-radius: 0px;
+  margin-top: 11px;
+}
+
+label{
+  background-color: #f7eff7;
+  text-align: center;
+  margin: 0 10px;
+  padding: 2px 0px;
+}
+
+.form-control{
+  border: none;
+  border-bottom: 1px solid #6c1e5f;
+  border-top: 0px ;
+  border-left: 0px ;
+  border-right: 0px ;
+  border-radius: 0px;
+  padding: 0px 10px !important;
+}
+
+.form-control:active{
+  border-bottom: 3px solid #6c1e5f;
+  transition:none;
+}
+
+.form-control:focus{
+  border-bottom: 3px solid #6c1e5f;
+  box-shadow:none;
+}
+.input-group-text{
+  border: 0px;
+  background-color: #6c1e5f;
+  border-radius: 0%;
+  color: #f7eff7;
+}
+
+
  .homeIcon{
   color:white;
  }
@@ -19,29 +297,40 @@
   height:10vh;
  }
 
- .button-row{
+ /* .button-row{
    height:18vh;
- }
+ } */
 
  .homeButtons{
-   margin-top:70px;
+  margin-top: 200px;
  }
 
- .homeButton{
-   background-color: #6d2d60;
-   border-radius: 80px;
-   padding-top:50px;
- }
+ .btn-home{
+  color:#f7eff7;
+  background-color: #6c1e5f;
+  
+  border-radius: 20px;
+  height: 150px;
+  padding: 0px 60px;
+  margin: 0px 20px 0px 150px;
+  box-shadow: 15px 20px;
+  box-shadow: #aaa
+  
+  
+}
+
+.btn-home:hover{
+  color:#6c1e5f;
+  background-color:  #f7eff7;
+  border:1px solid #6c1e5f;
+}
+
+
 
 .loginPage{
   background-color: #6d2d60;
   height: calc(100vh - 51px);
   margin-top: 51px;
-}
-
-.roundedbutton{
-  margin-left: 15px;
-  color:white;
 }
 
 .loginPanel{
@@ -588,7 +877,6 @@ textarea,
 .select select {
   line-height: 1.5;
   margin: 0;
-  height: 2.1em;
   padding: 0.3em 0.6em;
   border: 1px solid #ccc;
   background-color: #fff;
@@ -620,7 +908,6 @@ select {
   width: 100%;
   height: 2.1em;
   box-sizing: border-box;
-  padding: 0.3em 0.45em;
   transition: all .3s;
   -moz-appearance: none;
   -webkit-appearance: none;

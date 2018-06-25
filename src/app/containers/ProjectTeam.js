@@ -2,7 +2,7 @@
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import Project from "../components/Project";
+import ProjectTeam from "../components/ProjectTeam";
 import * as actions from "../state/actions";
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
         projectList: state.projectStore.projectList,
         status: state.projectStore.status,
         error: state.projectStore.error,
-        projectDetails: state.projectStore.projectDetails
+        projectDetails: state.projectStore.projectDetails,
+        projectTeam: state.projectStore.projectTeam,
     }
 }
 
@@ -30,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actionFn)
       },
       updateProject: function(editedProjectDetails) {
-        let actionFn=actions.initProjectDetails(editedProjectDetails);
+        let actionFn=actions.updateProject(editedProjectDetails);
         dispatch(actionFn)
       },
       saveUpdatedProject: function(ProjectDetailsToSave,callbackResult) {
@@ -40,21 +41,9 @@ const mapDispatchToProps = (dispatch) => {
       saveNewProject: function(ProjectDetailsToSave,callbackResult) {
         let actionFn=actions.saveNewProject(ProjectDetailsToSave,callbackResult);
         dispatch(actionFn)
-      },
-      getEmployeeProjects: function (id,callback) {
-        let actionFn = actions.getEmployeeProjects(id,callback);
-        dispatch(actionFn)
-      },
-      getProjEmpList: function (callback) {
-        let actionFn = actions.getProjEmpList(callback);
-        dispatch(actionFn)
-      },
-      initProjEmpList: function (projectTeam) {
-        let actionFn = actions.initProjEmpList(projectTeam);
-        dispatch(actionFn)
       }
     }
  }
 
 export default connect(mapStateToProps, 
-                    mapDispatchToProps) (Project)
+                    mapDispatchToProps) (ProjectTeam)

@@ -33,8 +33,9 @@ export default class EmployeeAddress extends Component {
         }
         if (addressType == 'permanent')
             this.props.saveUpdatedAddress(this.props.employeeDetails.emp_id, this.props.employeePermanentAddress, callbackResult);
-        else if (addressType == 'current')
+        else if (addressType =='current'){
             this.props.saveUpdatedAddress(this.props.employeeDetails.emp_id, this.props.employeeCurrentAddress, callbackResult);
+        }
     }
 
     changeValuePermanentAddress = (e, e_name, e_value) => {
@@ -67,8 +68,12 @@ export default class EmployeeAddress extends Component {
 
     currentAddSamePermanentAdd(e) {
         this.setState({
-            samePermAndCurAddress: !this.state.samePermAndCurAddress
+            samePermAndCurAddress:true
         })
+        let employeeCurrentAddress = this.props.employeePermanentAddress;
+        employeeCurrentAddress = Object.assign({},employeeCurrentAddress,{address_type:"current"})
+        this.props.updateCurrentAddress(employeeCurrentAddress);
+        
     }
 
     editPerAddress() {
@@ -80,11 +85,6 @@ export default class EmployeeAddress extends Component {
     render() {
         let employeePermanentAddress = this.props.employeePermanentAddress || [];
         let employeeCurrentAddress = this.props.employeeCurrentAddress || [];
-        if (this.state.samePermAndCurAddress) {
-            let employeeCurrentAddress = this.props.employeePermanentAddress;
-            this.props.updateCurrentAddress(employeeCurrentAddress);
-        }
-
         return (
             <div>
                 <div className="component-view container permanent-address">
@@ -94,7 +94,8 @@ export default class EmployeeAddress extends Component {
                             <button 
                                 onClick={() => this.setState({ disablePerAdd: false })} 
                                 detail={this.state.create ? true : false} 
-                                className="pull-right btn btn-xebia">
+                                className="pull-right btn btn-xebia"
+                                hidden={true}>
                                 EDIT <i className="fa fa-edit"></i>
                             </button>
                         </h2>
@@ -107,8 +108,8 @@ export default class EmployeeAddress extends Component {
                                 <input 
                                     type="text" 
                                     onChange={(e) => this.changeValuePermanentAddress(e)} 
-                                    disabled={this.state.disablePerAdd} 
-                                    className="form-control col-sm-8" 
+                                    // disabled={this.state.disablePerAdd} 
+                                    className="form-control col-sm-9" 
                                     id="add_line1" 
                                     value={employeePermanentAddress.add_line1} 
                                     placeholder="Enter Address Line 1" 
@@ -121,8 +122,8 @@ export default class EmployeeAddress extends Component {
                                 <input 
                                     type="text" 
                                     onChange={(e) => this.changeValuePermanentAddress(e)} 
-                                    disabled={this.state.disablePerAdd} 
-                                    className="form-control col-sm-8" 
+                                    // disabled={this.state.disablePerAdd} 
+                                    className="form-control col-sm-9" 
                                     id="add_line2" 
                                     value={employeePermanentAddress.add_line2} 
                                     placeholder="Enter Address Line 2" 
@@ -137,7 +138,7 @@ export default class EmployeeAddress extends Component {
                                         id="country"
                                         value={employeePermanentAddress.country}
                                         name="country"
-                                        disabled={this.state.disablePerAdd}
+                                        // disabled={this.state.disablePerAdd}
                                         onChange={(e) => this.changeValuePermanentAddress(null, 'country', e)} 
                                     />
                                 </div>
@@ -146,8 +147,10 @@ export default class EmployeeAddress extends Component {
                         <div className="component-body-right col-sm-6">
                             <div className="form-group row">
                                 <label for="state" className="col-sm-4">State:</label>
-                                <div className="form-control col-sm-6">
+                                <span className="form-control col-sm-6">
                                     <RegionDropdown
+                                        //className={`form-control col-sm-6`}
+                                        // styleName={'form-control col-sm-6'}
                                         id="state"
                                         name="state"
                                         country={employeePermanentAddress.country}
@@ -155,7 +158,7 @@ export default class EmployeeAddress extends Component {
                                         //disabled={this.state.disablePerAdd}
                                         onChange={(e) => this.changeValuePermanentAddress(null, 'state', e)} 
                                     />
-                                </div>
+                                </span>
                             </div>
                         </div>
                         <div className="component-body-left col-sm-6">
@@ -164,7 +167,7 @@ export default class EmployeeAddress extends Component {
                                 <input 
                                     type="text" 
                                     onChange={(e) => this.changeValuePermanentAddress(e)} 
-                                    disabled={this.state.disablePerAdd} 
+                                    // disabled={this.state.disablePerAdd} 
                                     value={employeePermanentAddress.pincode} 
                                     className="form-control col-sm-6" 
                                     id="email" 
@@ -176,7 +179,7 @@ export default class EmployeeAddress extends Component {
                     <div className="component-footer">
                         <button
                             className="pull-right btn btn-xebia"
-                            onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedAddress('permanent')} >
+                            onClick={() => this.saveUpdatedAddress('permanent')} >
                             <i className="fa fa-save"></i>
                             Save
                         </button>
@@ -195,7 +198,8 @@ export default class EmployeeAddress extends Component {
                             <h2>Current Address &nbsp;
                             <button 
                                 onClick={() => this.setState({ disableCurAdd: false })} 
-                                className="btn btn-xebia">
+                                className="btn btn-xebia"
+                                hidden={true}>
                                 EDIT 
                                 <i className="fa fa-edit"></i>
                             </button>
@@ -205,7 +209,7 @@ export default class EmployeeAddress extends Component {
                     <div>
                         <label for="emp_id">Same as Permanent:</label>
                         <Checkbox
-                            disabled={this.state.disableCurAdd}
+                            disabled={this.state.samePermAndCurAddress}
                             onChange={(e) => this.currentAddSamePermanentAdd(e)}
                             checked={this.state.samePermAndCurAddress}
                         />
@@ -218,8 +222,8 @@ export default class EmployeeAddress extends Component {
                                 <input 
                                     type="text" 
                                     onChange={(e) => this.changeValueCurrentAddress(e)} 
-                                    disabled={this.state.disableCurAdd} 
-                                    className="form-control col-sm-8" 
+                                    // disabled={this.state.disableCurAdd} 
+                                    className="form-control col-sm-9" 
                                     id="add_line1" 
                                     value={employeeCurrentAddress.add_line1} 
                                     placeholder="Enter Address Line 1" 
@@ -232,8 +236,8 @@ export default class EmployeeAddress extends Component {
                                 <input 
                                     type="text" 
                                     onChange={(e) => this.changeValueCurrentAddress(e)} 
-                                    disabled={this.state.disableCurAdd} 
-                                    className="form-control col-sm-8" 
+                                    // disabled={this.state.disableCurAdd} 
+                                    className="form-control col-sm-9" 
                                     id="add_line2" value={employeeCurrentAddress.add_line2} 
                                     placeholder="Enter Address Line 2" 
                                     name="add_line2" />
@@ -247,7 +251,7 @@ export default class EmployeeAddress extends Component {
                                         id="country"
                                         value={employeeCurrentAddress.country}
                                         name="country"
-                                        disabled={this.state.disableCurAdd}
+                                        // disabled={this.state.disableCurAdd}
                                         onChange={(e) => this.changeValueCurrentAddress(null, 'country', e)} />
                                 </div>
                             </div>
@@ -272,7 +276,7 @@ export default class EmployeeAddress extends Component {
                                 <input 
                                     type="text" 
                                     onChange={(e) => this.changeValueCurrentAddress(e)} 
-                                    disabled={this.state.disableCurAdd} 
+                                    // disabled={this.state.disableCurAdd} 
                                     value={employeeCurrentAddress.pincode} 
                                     className="form-control col-sm-6" 
                                     id="pincode" 
@@ -284,13 +288,14 @@ export default class EmployeeAddress extends Component {
                     <div className="component-footer">
                         <button 
                             className="pull-right btn btn-xebia" 
-                            onClick={this.state.create ? () => this.saveNewEmployee() : () => this.saveUpdatedAddress('current')} >
+                            onClick={() => this.saveUpdatedAddress('current')} >
                             Save
                         </button>
                         <button 
                             className="pull-right btn btn-xebia" 
-                            onClick={() => this.onCancel()}>
-                            Save
+                            // onClick={() => this.saveUpdatedAddress('current')} 
+                            >
+                            Cancel
                         </button>
                     </div>
                 </div>

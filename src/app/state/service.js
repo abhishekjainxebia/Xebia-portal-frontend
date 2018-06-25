@@ -66,6 +66,20 @@ export function getEmployeeProjects(id) {
         })
 }
 
+export function getProjEmpList() {
+    let apiEndpoint = '/empprojmaplist/'
+    let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'access-control-allow-credentials': true,
+        'content-type': 'application/json'
+    }
+    return Http.getMethod(apiEndpoint, null, headers
+    )
+        .then(response => {
+            return response
+        })
+}
+
 export function getEmployeePermenentAddress(id) {
     let apiEndpoint = '/address/' + id + '/permanent'
     let headers = {

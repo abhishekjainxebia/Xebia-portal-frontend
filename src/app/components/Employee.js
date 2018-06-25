@@ -1,11 +1,12 @@
 import React, { Component, PureComponent } from "react";
-import Navbar from './Navbar'
+import Header from './Navbar'
 import PropTypes from "prop-types";
 import Moment from 'react-moment';
 import moment from 'moment'
 import { NavLink } from 'react-router-dom';
 import EmployeeAddress from '../containers/EmployeeAddress';
 import EmployeeProject from '../containers/EmployeeProject';
+import EmployeeSkill from '../containers/EmployeeSkill';
 
 
 export default class Employee extends PureComponent {
@@ -20,7 +21,8 @@ export default class Employee extends PureComponent {
             empSkillHidden: true,
             empProjectHidden: true,
             empAddressHidden: true,
-            disableEmpDetails: true
+            disableEmpDetails: true,
+            empType:[]
         }
     }
 
@@ -29,16 +31,31 @@ export default class Employee extends PureComponent {
             const { emp_id } = this.props.location.state
             console.log("emp_id " + emp_id) // "bar"
             this.getEmployeeDetails(emp_id);
-            this.setState({
-                detail: false,
-            })
-        } else {
-            this.setState({
-                detail: true,
-            })
         }
+        this.setState({
+            empType:new Array( "developer", "manager", "architect" )
+        })
+        //     this.setState({
+        //         detail: false,
+        //     })
+        // } else {
+        //     this.setState({
+        //         detail: true,
+        //     })
+        // }
 
     }
+
+    // populateDropDown(){
+        
+    //     this.setState({
+    //         suggestion:empType,
+    //         suggestionHidden:false
+            
+    //     })
+        
+
+    // }
 
     editEmployee() {
         this.setState({
@@ -63,6 +80,8 @@ export default class Employee extends PureComponent {
             empAddressHidden:true,
             disableEmpDetails:true,
             empProjectHidden:true,
+            createNewEmployee:false,
+            empSkillHidden:true
         })
         console.log(id);
         this.props.fetchEmployeeDetails(id);
@@ -76,6 +95,7 @@ export default class Employee extends PureComponent {
             empAddressHidden: false,
             empDetailHidden: true,
             empProjectHidden: true,
+            empSkillHidden:true
         })
         this.setState({
 
@@ -106,7 +126,6 @@ export default class Employee extends PureComponent {
                 alert(employeePorjectList.description)
                 this.setState({
                     employeeProjects: true,
-                    detail: true,
                 })
             }
         }
@@ -114,6 +133,15 @@ export default class Employee extends PureComponent {
         this.props.getEmployeeProjects(id, callback);
         console.log(this.props.projectList)
         //this.props.getProjectList();
+    }
+
+    getEmployeeSkill(id){
+        this.setState({
+            empProjectHidden: true,
+            empDetailHidden: true,
+            empAddressHidden: true,
+            empSkillHidden:false
+        })
     }
 
     saveNewEmployee() {
@@ -194,10 +222,11 @@ export default class Employee extends PureComponent {
     showCreateEmployeeForm = () => {
         this.setState({
             empDetailHidden: false,
-            disabledEmpDetails: false,
+            disableEmpDetails: false,
             createNewEmployee: true,
             empProjectHidden: true,
-            empAddressHidden:false
+            empAddressHidden:true,
+            empSkillHidden:true
 
         })
         let employeeDetails = {
@@ -252,16 +281,15 @@ export default class Employee extends PureComponent {
 
         return (
             <div>
-                <Navbar />
+                <Header />
                 <section id="workboard-section" className="row">
                     <div id="sidebar-section" className="col-sm-2">
                         <div className="create-new-employee">
                             <i className="fa fa-arrow-circle-up"></i>
                             <button 
                                 onClick={() => { this.showCreateEmployeeForm() }} 
-                                className="pull-right btn btn-xebia-purpleback">
+                                className="btn btn-xebia-purpleback">
                                 Create Employee 
-                                <i className="fa fa-edit"></i>
                             </button>
                         </div>
                         <div>Search</div>
@@ -309,7 +337,7 @@ export default class Employee extends PureComponent {
                                             <a href="#" onClick={() => { this.getEmployeeDetails(employee.emp_id) }} >Details</a> |
                                             <a href="#" onClick={() => { this.getEmployeeAddress(employee.emp_id) }} >Address</a> |
                                             <a href="#" onClick={() => { this.getEmployeeProjects(employee.emp_id) }} >Project</a> |
-                                            <a href="#">Skills</a>
+                                            <a href="#" onClick={() => { this.getEmployeeSkill(employee.emp_id) }} >Skills</a> |
                                         </div>
                                         <hr/>
                                     </div>
@@ -369,7 +397,7 @@ export default class Employee extends PureComponent {
                                             <input 
                                                 type="text" 
                                                 onChange={(e) => this.empDetailsChangeValue(e)} 
-                                                disabled={true} 
+                                                disabled={this.state.createNewEmployee?false:true} 
                                                 className="form-control col-sm-6" 
                                                 id="emp_id" 
                                                 value={employee.emp_id} 
@@ -469,13 +497,25 @@ export default class Employee extends PureComponent {
                                             <label for="emp_type" className="col-sm-4">Emp Type:</label>
                                             <input 
                                                 type="text" 
+                                                onFocusCapture={()=>this.populateDropDown()}
                                                 onChange={(e) => this.empDetailsChangeValue(e)} 
                                                 disabled={this.state.disableEmpDetails} 
                                                 value={employee.emp_type} 
                                                 className="form-control col-sm-6" 
                                                 id="emp_type" 
                                                 placeholder="Enter Emp Type" 
-                                                name="emp_type" />
+                                                name="emp_type" 
+                                                list="data"
+                                                />
+                                                <datalist id="data">
+                                                    {
+                                                        this.state.empType.map((type) => {
+                                                            return (
+                                                                <option value={type} />
+                                                            )
+                                                        })
+                                                    }
+                                                </datalist> 
                                         </div>
                                     </div>
                                 </div>
@@ -500,7 +540,7 @@ export default class Employee extends PureComponent {
                             <EmployeeAddress/>
                         </div>
                         <div id="employee-skill-section" className={this.state.empSkillHidden ? 'hidden' : ''}>
-                            Hello
+                            <EmployeeSkill/>
                         </div>
                     </div>
                 </section>

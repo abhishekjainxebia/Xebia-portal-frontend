@@ -7,14 +7,12 @@ import * as actions from "../state/actions";
 
 const mapStateToProps = (state) => {
   return {
-    employeeList: state.employeeListStore.employeeList,
-    projectList: state.projectListStore.projectList,
-    status: state.employeeListStore.status,
-    error: state.employeeListStore.error,
-    employeeDetails: state.employeeDetailsStore.employeeDetails,
-    employeeProjectList: state.employeeDetailsStore.employeeProjectList,
-    employeePermanentAddress: state.employeeDetailsStore.employeePermanentAddress,
-    employeeCurrentAddress: state.employeeDetailsStore.employeeCurrentAddress,
+    employeeList: state.employeeStore.employeeList,
+    projectList: state.projectStore.projectList,
+    employeeDetails: state.employeeStore.employeeDetails,
+    employeeProjectList: state.employeeStore.employeeProjectList,
+    employeePermanentAddress: state.employeeStore.employeePermanentAddress,
+    employeeCurrentAddress: state.employeeStore.employeeCurrentAddress,
   }
 }
 

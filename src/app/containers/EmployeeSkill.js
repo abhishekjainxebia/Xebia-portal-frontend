@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import EmployeeAddress from "../components/EmployeeAddress";
+import EmployeeSkill from "../components/EmployeeSkill";
 import * as actions from "../state/actions";
 
 const mapStateToProps = (state) => {
@@ -20,22 +20,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updatePermanentAddress: function (employeePermanentAddress) {
-      let actionFn = actions.initEmployeePermanentAddress(employeePermanentAddress);
-      dispatch(actionFn)
-    },
-    updateCurrentAddress: function (employeeCurrentAddress) {
-      let actionFn = actions.initEmployeeCurrentAddress(employeeCurrentAddress);
-      dispatch(actionFn)
-    },
-    saveUpdatedAddress:function(emp_id,updatedEmployeeAddress,callbackResult){
-      let actionFn = actions.saveUpdatedAddress(emp_id,updatedEmployeeAddress,callbackResult);
+    updateEmployeeProjectList: function (employeeProjectList){
+      let actionFn = actions.initiateEmployeeProjects(employeeProjectList);
       dispatch(actionFn)
     }
-    
-    
   }
 }
 
 export default connect(mapStateToProps,
-  mapDispatchToProps)(EmployeeAddress)
+  mapDispatchToProps)(EmployeeSkill)
